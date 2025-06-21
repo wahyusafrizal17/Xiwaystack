@@ -34,7 +34,7 @@
   <body class="index-page">
     <header id="header" class="header d-flex align-items-center fixed-top">
       <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="https://bootstrapmade.com/content/demo/Strategy/assets/img/logo.webp" alt=""> -->
           <h1 class="sitename">Xiwaystack</h1>
@@ -172,7 +172,7 @@
           <div class="row gx-5 align-items-center">
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
               <div class="about-image position-relative">
-                <img src="https://bootstrapmade.com/content/demo/Strategy/assets/img/about/about-portrait-1.webp" class="img-fluid rounded-4 shadow-sm" alt="About Image" loading="lazy">
+                <img src="https://dicoding-assets.sgp1.cdn.digitaloceanspaces.com/blog/wp-content/uploads/2020/04/internship-rendi-photo-backend.png" class="img-fluid rounded-4 shadow-sm" alt="About Image" loading="lazy">
                 <div class="experience-badge">
                   <span class="years">5+</span>
                   <span class="text">Tahun Pengalaman</span>
