@@ -51,7 +51,10 @@
               <a href="#services">Services</a>
             </li>
             <li>
-              <a href="#portfolio">Products</a>
+              <a href="#testimoni">Testimoni</a>
+            </li>
+            <li>
+              <a href="{{ route('sourcecode.index') }}">Sourcecode</a>
             </li>
             <li>
               <a href="#team">About</a>
@@ -205,11 +208,11 @@
             </div>
           </div>
           <!-- Testimonial Section -->
-          <div class="testimonial-section mt-5 pt-5" data-aos="fade-up" data-aos-delay="100">
+          <div id="testimoni" class="testimonial-section mt-5 pt-5" data-aos="fade-up" data-aos-delay="100">
             <div class="row">
               <div class="col-lg-4" data-aos="fade-right" data-aos-delay="200">
                 <div class="testimonial-intro">
-                  <h3>Apa Kata Klien</h3>
+                  <h3>Testimoni</h3>
                   <p>Beberapa testimoni dari klien yang puas dengan hasil kerja saya dalam berbagai proyek.</p>
                   <div class="swiper-nav-buttons mt-4">
                     <button class="slider-prev">
@@ -282,7 +285,158 @@
                         </div>
                       </div>
                     </div>
-                    <!-- Tambahkan lebih banyak testimoni jika ada -->
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Aplikasi mobile untuk tugas akhir saya selesai tepat waktu. Kode rapi dan dokumentasinya jelas. Sangat recommended!"</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=1" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Dewi Sartika</h6>
+                            <span>Mahasiswa Sistem Informasi</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Bimbingan skripsi dari proposal sampai sidang sangat membantu. Dosen pun mengapresiasi struktur dan analisisnya."</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=2" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Budi Santoso</h6>
+                            <span>Alumni Teknik Informatika</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Website toko online kami jadi lebih modern dan mudah dioperasikan. Pembayaran dan stok otomatis, mantap!"</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=3" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Siti Aminah</h6>
+                            <span>Pemilik UMKM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Revisi dikerjakan dengan cepat dan sesuai saran dosen. Saya lulus tepat waktu berkat bantuan pembuatan sistemnya."</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=4" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Andi Pratama</h6>
+                            <span>Mahasiswa Teknik Komputer</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Jasa makalah dan analisis data untuk penelitian saya sangat memuaskan. Hasilnya rapi dan mudah dipresentasikan."</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=5" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Fitri Handayani</h6>
+                            <span>Mahasiswi Manajemen</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Aplikasi SPK untuk pemilihan supplier yang saya pesan berjalan baik. Perhitungan dan laporannya sesuai teori."</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=6" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Eko Prasetyo</h6>
+                            <span>Staff IT Perusahaan</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Komunikasi sangat responsif via WhatsApp. Proses dari briefing sampai delivery smooth. Harga juga bersaing."</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=7" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Rina Wulandari</h6>
+                            <span>Freelancer</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="testimonial-item">
+                        <div class="rating mb-3">
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>"Sistem informasi perpustakaan untuk skripsi saya diterima dosen tanpa revisi berat. Terima kasih banyak!"</p>
+                        <div class="client-info d-flex align-items-center mt-4">
+                          <img src="https://i.pravatar.cc/150?img=8" class="client-img" alt="Client" loading="lazy">
+                          <div>
+                            <h6 class="mb-0">Ahmad Fauzi</h6>
+                            <span>Mahasiswa Teknik Informatika</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -409,201 +563,7 @@
           </div>
         </div>
       </section>
-      <!-- Portfolio Section -->
-      <section id="portfolio" class="portfolio section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Portfolio</h2>
-          <div>
-            <span>Check Our</span>
-            <span class="description-title">Portfolio</span>
-          </div>
-        </div>
-        <!-- End Section Title -->
-        <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-          <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
-              <li data-filter="*" class="filter-active"> All Projects </li>
-              <li data-filter=".filter-webiste"> Website </li>
-              <li data-filter=".filter-tesis"> Tesis </li>
-              <li data-filter=".filter-makalah"> Makalah </li>
-              <li data-filter=".filter-mobile"> Mobile </li>
-            </ul>
-            <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-webiste">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="{{ asset('assets/images/portofolio/tellus.png') }}" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Webiste</div>
-                        <h3 class="entry-title">Tellus</h3>
-                        <div class="entry-links">
-                          <a href="{{ asset('assets/images/portofolio/tellus.png') }}" class="glightbox" data-gallery="portfolio-gallery-ui">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-webiste">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2020/05/22052929/illustration-landing-pages-popular-e-commerce.jpg" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Webiste</div>
-                        <h3 class="entry-title">e-Commerce</h3>
-                        <div class="entry-links">
-                          <a href="https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2020/05/22052929/illustration-landing-pages-popular-e-commerce.jpg" class="glightbox" data-gallery="portfolio-gallery-ui">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-tesis">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://www.jmtech.id/blog/wp-content/uploads/2021/06/Aplikasi-Laptop-Untuk-Skripsi.jpg" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Tesis</div>
-                        <h3 class="entry-title">SI Perpustakaan</h3>
-                        <div class="entry-links">
-                          <a href="https://www.jmtech.id/blog/wp-content/uploads/2021/06/Aplikasi-Laptop-Untuk-Skripsi.jpg" class="glightbox" data-gallery="portfolio-gallery-development">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-makalah">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://static.vecteezy.com/system/resources/previews/031/703/668/non_2x/electronic-audit-research-report-on-tablet-illustration-flat-cartoon-financial-or-quality-analysis-statistics-with-growth-charts-and-graphs-auditor-analyzing-or-search-marketing-data-image-vector.jpg" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Makalah</div>
-                        <h3 class="entry-title">Survey Kebermanfaatan Olahraga</h3>
-                        <div class="entry-links">
-                          <a href="https://static.vecteezy.com/system/resources/previews/031/703/668/non_2x/electronic-audit-research-report-on-tablet-illustration-flat-cartoon-financial-or-quality-analysis-statistics-with-growth-charts-and-graphs-auditor-analyzing-or-search-marketing-data-image-vector.jpg" class="glightbox" data-gallery="portfolio-gallery-photography">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-mobile">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://indodesa.id/wp-content/uploads/2021/03/Testimonial-OpenSID.png" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Mobile</div>
-                        <h3 class="entry-title">Buku Tamu</h3>
-                        <div class="entry-links">
-                          <a href="https://indodesa.id/wp-content/uploads/2021/03/Testimonial-OpenSID.png" class="glightbox" data-gallery="portfolio-gallery-marketing">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-webiste">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="{{ asset('assets/images/portofolio/plnjatinegara.png') }}" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Website</div>
-                        <h3 class="entry-title">Plnjatinegara</h3>
-                        <div class="entry-links">
-                          <a href="{{ asset('assets/images/portofolio/plnjatinegara.png') }}" class="glightbox" data-gallery="portfolio-gallery-ui">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-makalah">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://img.freepik.com/vector-premium/diagnostico-medico-biotecnologia-e-investigacion-genetica-concepto-vector-ilustracion_143808-78.jpg" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Makalah</div>
-                        <h3 class="entry-title">Penjualan Merchandise</h3>
-                        <div class="entry-links">
-                          <a href="https://img.freepik.com/vector-premium/diagnostico-medico-biotecnologia-e-investigacion-genetica-concepto-vector-ilustracion_143808-78.jpg" class="glightbox" data-gallery="portfolio-gallery-photography">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-makalah">
-                <article class="portfolio-entry">
-                  <figure class="entry-image">
-                    <img src="https://img.freepik.com/vector-premium/concepto-biotecnologia-microscopio_23-2148895088.jpg" class="img-fluid" alt="" loading="lazy">
-                    <div class="entry-overlay">
-                      <div class="overlay-content">
-                        <div class="entry-meta">Makalah</div>
-                        <h3 class="entry-title">Pendukung Keputusan Pemilihan Guru</h3>
-                        <div class="entry-links">
-                          <a href="https://img.freepik.com/vector-premium/concepto-biotecnologia-microscopio_23-2148895088.jpg" class="glightbox" data-gallery="portfolio-gallery-photography">
-                            <i class="fa fa-expand"></i>
-                          </a>
-                          {{-- <a href="portfolio-details.html">
-                            <i class="fa fa-arrow-right"></i>
-                          </a> --}}
-                        </div>
-                      </div>
-                    </div>
-                  </figure>
-                </article>
-              </div>
-              <!-- End Portfolio Item -->
-            </div>
-            <!-- End Portfolio Container -->
-          </div>
-        </div>
-      </section>
- 
+
       <section class="faq-9 faq section" id="team">
         <div class="container">
           <div class="row">
@@ -691,16 +651,19 @@
             <h4>Our Services</h4>
             <ul>
               <li>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#">Services</a>
+                <a href="/#services">Services</a>
               </li>
               <li>
-                <a href="#">Products</a>
+                <a href="/#testimoni">Testimoni</a>
               </li>
               <li>
-                <a href="#">Abouts</a>
+                <a href="{{ route('sourcecode.index') }}">Sourcecode</a>
+              </li>
+              <li>
+                <a href="/#team">About</a>
               </li>
             </ul>
           </div>
