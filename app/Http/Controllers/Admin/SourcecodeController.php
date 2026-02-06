@@ -28,6 +28,7 @@ class SourcecodeController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
+            'price' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
             'thumbnail' => ['nullable', 'image', 'max:2048'],
             'is_published' => ['nullable', 'boolean'],
@@ -38,6 +39,7 @@ class SourcecodeController extends Controller
 
         $slug = ! empty($data['slug']) ? $this->uniqueSlug(Str::slug($data['slug'])) : $this->uniqueSlug(Str::slug($data['title']));
         $data['slug'] = $slug;
+        $data['price'] = array_key_exists('price', $data) && $data['price'] !== null ? (int) $data['price'] : null;
         $data['is_published'] = (bool) ($data['is_published'] ?? true);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         $data['features'] = [];
@@ -73,6 +75,7 @@ class SourcecodeController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'unique:sourcecodes,slug,' . $sourcecode->id],
+            'price' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
             'thumbnail' => ['nullable', 'image', 'max:2048'],
             'is_published' => ['nullable', 'boolean'],
@@ -84,6 +87,7 @@ class SourcecodeController extends Controller
         ]);
 
         $data['slug'] = $data['slug'] ?? $this->uniqueSlug(Str::slug($data['title']), $sourcecode->id);
+        $data['price'] = array_key_exists('price', $data) && $data['price'] !== null ? (int) $data['price'] : null;
         $data['is_published'] = (bool) ($data['is_published'] ?? true);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         $data['features'] = [];

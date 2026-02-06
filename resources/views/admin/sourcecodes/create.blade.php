@@ -21,7 +21,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/zjf3oktgtjt6un0nqg7xa4mg1i4u0tikp8xf6dijrguvrv5c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   if (document.getElementById('description')) {

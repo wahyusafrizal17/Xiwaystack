@@ -108,6 +108,7 @@
             <th style="width: 70px;" class="no-sort">Thumbnail</th>
             <th>Judul</th>
             <th>Slug</th>
+            <th style="width: 120px;">Harga</th>
             <th style="width: 110px;">Status</th>
             <th style="width: 100px;" class="no-sort">Aksi</th>
           </tr>
@@ -127,6 +128,13 @@
                 <span class="fw-500 text-dark">{{ $item->title }}</span>
               </td>
               <td><span class="admin-slug">{{ $item->slug }}</span></td>
+              <td>
+                @if(! is_null($item->price))
+                  <span class="fw-500 text-dark">Rp {{ number_format($item->price, 0, ',', '.') }}</span>
+                @else
+                  <span class="text-muted">—</span>
+                @endif
+              </td>
               <td>
                 @if($item->is_published)
                   <span class="admin-badge admin-badge-success">Published</span>

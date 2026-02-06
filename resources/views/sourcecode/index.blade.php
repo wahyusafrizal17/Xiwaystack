@@ -95,6 +95,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .sourcecode-card .card-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background: rgba(227, 161, 39, 0.06);
+    border: 1px solid rgba(227, 161, 39, 0.25);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
   .sourcecode-card .card-link {
     font-size: 0.875rem;
     font-weight: 600;
@@ -134,6 +147,9 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">{{ $item->title }}</h3>
+              @if(! is_null($item->price))
+                <div class="card-price">Rp {{ number_format($item->price, 0, ',', '.') }}</div>
+              @endif
               <p class="card-desc">{{ $item->description ? Str::limit(strip_tags($item->description), 100) : '—' }}</p>
               <span class="card-link">Lihat Detail <i class="fa fa-arrow-right"></i></span>
             </div>

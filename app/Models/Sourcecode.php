@@ -21,6 +21,7 @@ class Sourcecode extends Model
         'title',
         'slug',
         'thumbnail_path',
+        'price',
         'description',
         'features',
         'is_published',
@@ -30,6 +31,7 @@ class Sourcecode extends Model
     protected $casts = [
         'features' => 'array',
         'is_published' => 'boolean',
+        'price' => 'integer',
     ];
 
     public function images(): HasMany

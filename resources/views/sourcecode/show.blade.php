@@ -20,12 +20,32 @@
   .sourcecode-detail-section .breadcrumb-item.active { color: var(--heading-color); font-weight: 500; }
   .sourcecode-detail-section .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.35); }
 
+  .sourcecode-detail-section .detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
   .sourcecode-detail-section .detail-title {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--heading-color);
-    margin-bottom: 1.5rem;
     line-height: 1.3;
+    margin-bottom: 0;
+  }
+
+  .sourcecode-detail-section .detail-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background: rgba(227, 161, 39, 0.08);
+    border: 1px solid rgba(227, 161, 39, 0.35);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
   }
 
   .sourcecode-detail-section .media-wrap {
@@ -285,7 +305,12 @@
 
     <div class="row">
       <div class="col-lg-8" data-aos="fade-up">
-        <h1 class="detail-title">{{ $sourcecode->title }}</h1>
+        <div class="detail-header">
+          <h1 class="detail-title">{{ $sourcecode->title }}</h1>
+          @if(! is_null($sourcecode->price))
+            <div class="detail-price">Rp {{ number_format($sourcecode->price, 0, ',', '.') }}</div>
+          @endif
+        </div>
 
         {{-- Thumbnail di atas (gambar utama) --}}
         @if($sourcecode->thumbnail_path)
