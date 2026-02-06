@@ -100,6 +100,30 @@
     transform: translateX(-2px);
   }
 
+  .sourcecode-detail-section .sidebar-card .btn-buy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #25d366; /* WhatsApp green */
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .sourcecode-detail-section .sidebar-card .btn-buy:hover {
+    color: #ffffff;
+    opacity: 0.96;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  }
+
   .sourcecode-detail-section .features-title { font-size: 1.1rem; font-weight: 600; color: var(--heading-color); margin-top: 1.75rem; margin-bottom: 0.75rem; }
   .sourcecode-detail-section .feature-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; font-size: 0.9375rem; color: var(--default-color); }
   .sourcecode-detail-section .feature-item i { color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem; flex-shrink: 0; }
@@ -311,10 +335,35 @@
       </div>
       <div class="col-lg-4" data-aos="fade-left">
         <div class="sidebar-card">
-          <h5 class="card-title">Detail</h5>
-          <p class="card-desc">{{ $sourcecode->description ? Str::limit(strip_tags($sourcecode->description), 160) : 'Tidak ada ringkasan.' }}</p>
-          <a href="{{ route('sourcecode.index') }}" class="btn-back">
-            <i class="fa fa-arrow-left"></i> Kembali ke Daftar
+          <h5 class="card-title">Kontak</h5>
+          <div class="card-desc">
+            <p class="mb-2">
+              <strong>Whatsapp</strong>:
+              <a href="https://wa.me/6281318960576" target="_blank" rel="noopener">
+                0813-1896-0576
+              </a>
+            </p>
+            <p class="mb-2">
+              <strong>Instagram</strong>:
+              <a href="https://instagram.com/wahyuu.sz" target="_blank" rel="noopener">
+                @wahyuu.sz
+              </a>
+            </p>
+            <p class="mb-0">
+              <strong>Tiktok</strong>:
+              <a href="https://www.tiktok.com/@waystack.com" target="_blank" rel="noopener">
+                @waystack.com
+              </a>
+            </p>
+          </div>
+          <a
+            href="https://wa.me/6281318960576?text={{ urlencode('Halo, saya tertarik membeli sourcecode: ' . $sourcecode->title) }}"
+            target="_blank"
+            rel="noopener"
+            class="btn-buy"
+          >
+            <i class="fa fa-whatsapp"></i>
+            Beli Sourcecode via WhatsApp
           </a>
         </div>
         @if(isset($latestSourcecodes) && $latestSourcecodes->isNotEmpty())
