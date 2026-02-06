@@ -30,11 +30,11 @@ class SourcecodeController extends Controller
             'slug' => ['nullable', 'string', 'max:255'],
             'price' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
-            'thumbnail' => ['nullable', 'image', 'max:2048'],
+            'thumbnail' => ['nullable', 'image', 'max:5120'],
             'is_published' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'detail_images' => ['nullable', 'array'],
-            'detail_images.*' => ['image', 'max:2048'],
+            'detail_images.*' => ['image', 'max:5120'],
         ]);
 
         $slug = ! empty($data['slug']) ? $this->uniqueSlug(Str::slug($data['slug'])) : $this->uniqueSlug(Str::slug($data['title']));
@@ -77,13 +77,13 @@ class SourcecodeController extends Controller
             'slug' => ['nullable', 'string', 'max:255', 'unique:sourcecodes,slug,' . $sourcecode->id],
             'price' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
-            'thumbnail' => ['nullable', 'image', 'max:2048'],
+            'thumbnail' => ['nullable', 'image', 'max:5120'],
             'is_published' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'delete_images' => ['nullable', 'array'],
             'delete_images.*' => ['integer', 'exists:sourcecode_images,id'],
             'detail_images' => ['nullable', 'array'],
-            'detail_images.*' => ['image', 'max:2048'],
+            'detail_images.*' => ['image', 'max:5120'],
         ]);
 
         $data['slug'] = $data['slug'] ?? $this->uniqueSlug(Str::slug($data['title']), $sourcecode->id);
