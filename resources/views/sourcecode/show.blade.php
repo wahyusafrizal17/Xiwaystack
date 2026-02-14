@@ -148,14 +148,28 @@
   .sourcecode-detail-section .feature-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; font-size: 0.9375rem; color: var(--default-color); }
   .sourcecode-detail-section .feature-item i { color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem; flex-shrink: 0; }
 
+  .sourcecode-detail-section .detail-thumbs-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0 -0.25rem 1rem;
+    padding: 0.25rem 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+  }
+  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar { height: 6px; }
+  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar-track { background: transparent; }
+  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
   .sourcecode-detail-section .detail-thumbs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.5rem;
+    width: max-content;
   }
   .sourcecode-detail-section .detail-thumb {
     width: 72px;
     height: 72px;
+    min-width: 72px;
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid transparent;
@@ -218,6 +232,33 @@
     transition: background 0.2s;
   }
   .detail-image-modal .modal-close:hover { background: rgba(255,255,255,0.25); }
+  .detail-image-modal .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, opacity 0.2s;
+    z-index: 2;
+  }
+  .detail-image-modal .modal-nav:hover { background: rgba(255,255,255,0.3); }
+  .detail-image-modal .modal-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+  .detail-image-modal .modal-prev { left: -52px; }
+  .detail-image-modal .modal-next { right: -52px; }
+  @media (max-width: 768px) {
+    .detail-image-modal .modal-prev { left: 8px; }
+    .detail-image-modal .modal-next { right: 8px; }
+  }
 
   .sourcecode-detail-section .latest-wrap { margin-top: 1.5rem; }
   .sourcecode-detail-section .latest-title {
@@ -319,10 +360,11 @@
           </div>
         @endif
 
-        {{-- Gambar detail: hanya list thumbnail, klik buka modal --}}
+        {{-- Gambar detail: satu baris, scroll horizontal jika banyak --}}
         @if($sourcecode->images->isNotEmpty())
           <p class="small text-uppercase mb-2" style="color: rgba(255,255,255,0.5); letter-spacing: 0.05em;">Gambar detail</p>
-          <div class="detail-thumbs mb-4">
+          <div class="detail-thumbs-wrap mb-4">
+            <div class="detail-thumbs">
             @foreach($sourcecode->images as $index => $img)
               @php
                 $src = (str_starts_with($img->image_path ?? '', 'uploads/sourcecode/') || str_starts_with($img->image_path ?? '', 'sourcecode/')) ? asset($img->image_path) : asset('storage/' . $img->image_path);
@@ -331,11 +373,14 @@
                 <img src="{{ $src }}" alt="">
               </button>
             @endforeach
+            </div>
           </div>
           <div class="detail-image-modal" id="detail-image-modal" aria-hidden="true">
             <div class="modal-inner">
               <button type="button" class="modal-close" id="detail-modal-close" aria-label="Tutup">&times;</button>
+              <button type="button" class="modal-nav modal-prev" id="detail-modal-prev" aria-label="Gambar sebelumnya"><i class="fa fa-chevron-left"></i></button>
               <img id="detail-modal-img" src="" alt="">
+              <button type="button" class="modal-nav modal-next" id="detail-modal-next" aria-label="Gambar berikutnya"><i class="fa fa-chevron-right"></i></button>
             </div>
           </div>
         @endif
@@ -426,11 +471,28 @@ document.addEventListener('DOMContentLoaded', function() {
   var modal = document.getElementById('detail-image-modal');
   var modalImg = document.getElementById('detail-modal-img');
   var modalClose = document.getElementById('detail-modal-close');
+  var modalPrev = document.getElementById('detail-modal-prev');
+  var modalNext = document.getElementById('detail-modal-next');
 
-  function openModal(src, alt) {
-    if (!modal || !modalImg) return;
-    modalImg.src = src || '';
-    modalImg.alt = alt || '';
+  var slides = [];
+  thumbs.forEach(function(t) {
+    slides.push({ src: t.getAttribute('data-src'), alt: t.getAttribute('data-alt') || '' });
+  });
+  var currentIndex = 0;
+
+  function updateModalImage() {
+    if (!modalImg || !slides.length) return;
+    var s = slides[currentIndex];
+    modalImg.src = s.src || '';
+    modalImg.alt = s.alt || '';
+    if (modalPrev) modalPrev.style.display = slides.length <= 1 ? 'none' : 'flex';
+    if (modalNext) modalNext.style.display = slides.length <= 1 ? 'none' : 'flex';
+  }
+
+  function openModal(index) {
+    if (!modal || !modalImg || index < 0 || index >= slides.length) return;
+    currentIndex = index;
+    updateModalImage();
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -441,19 +503,32 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+  function goPrev() {
+    if (slides.length <= 1) return;
+    currentIndex = currentIndex <= 0 ? slides.length - 1 : currentIndex - 1;
+    updateModalImage();
+  }
+  function goNext() {
+    if (slides.length <= 1) return;
+    currentIndex = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
+    updateModalImage();
+  }
 
-  thumbs.forEach(function(thumb) {
-    thumb.addEventListener('click', function() {
-      var src = this.getAttribute('data-src');
-      var alt = this.getAttribute('data-alt') || '';
-      openModal(src, alt);
-    });
+  thumbs.forEach(function(thumb, i) {
+    thumb.addEventListener('click', function() { openModal(i); });
   });
   if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalPrev) modalPrev.addEventListener('click', function(e) { e.stopPropagation(); goPrev(); });
+  if (modalNext) modalNext.addEventListener('click', function(e) { e.stopPropagation(); goNext(); });
   if (modal) {
     modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
   }
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function(e) {
+    if (!modal || !modal.classList.contains('show')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') goPrev();
+    if (e.key === 'ArrowRight') goNext();
+  });
 });
 </script>
 @endpush
