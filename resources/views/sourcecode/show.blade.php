@@ -22,7 +22,7 @@
 
   .sourcecode-detail-section .detail-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 1.5rem;
     margin-bottom: 1.25rem;
@@ -33,6 +33,8 @@
     color: var(--heading-color);
     line-height: 1.3;
     margin-bottom: 0;
+    flex: 1;
+    min-width: 0;
   }
 
   .sourcecode-detail-section .detail-price {
@@ -46,6 +48,7 @@
     border: 1px solid rgba(227, 161, 39, 0.35);
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
+    flex-shrink: 0;
   }
 
   .sourcecode-detail-section .media-wrap {
@@ -176,14 +179,17 @@
     cursor: pointer;
     transition: border-color 0.2s, opacity 0.2s;
     flex-shrink: 0;
-    background: rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .sourcecode-detail-section .detail-thumb:hover { opacity: 0.9; }
   .sourcecode-detail-section .detail-thumb.active { border-color: var(--accent-color); }
   .sourcecode-detail-section .detail-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
   }
 
