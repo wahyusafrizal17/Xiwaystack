@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-xiw-navy text-slate-300 antialiased;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-xiw-cyan via-white to-xiw-violet bg-clip-text text-transparent;
+  }
+  .border-gradient {
+    @apply relative rounded-2xl p-[1px] bg-gradient-to-br from-xiw-cyan/50 via-xiw-violet/40 to-xiw-gold/30;
+  }
+  .border-gradient-inner {
+    @apply rounded-2xl bg-xiw-navy/95 backdrop-blur-sm;
+  }
+}
+
+/* Tech grid background */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(0, 209, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 209, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
