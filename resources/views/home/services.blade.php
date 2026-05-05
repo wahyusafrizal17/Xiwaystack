@@ -8,12 +8,12 @@
 
     <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       @foreach ([
-          ['icon' => 'fa-globe', 'title' => 'Jasa Website', 'desc' => 'Company profile, landing page, dashboard admin.'],
-          ['icon' => 'fa-mobile', 'title' => 'Aplikasi Mobile', 'desc' => 'Android / cross-platform untuk TA & bisnis.'],
-          ['icon' => 'fa-graduation-cap', 'title' => 'Skripsi & Tugas', 'desc' => 'Bimbingan TA, sistem skripsi, laporan.'],
-          ['icon' => 'fa-plug', 'title' => 'API & Integrasi', 'desc' => 'Payment gateway, WA API, third-party.'],
+          ['icon' => 'fa-globe', 'title' => 'Jasa Website', 'desc' => 'Company profile, landing page, dashboard admin.', 'href' => route('services.website')],
+          ['icon' => 'fa-mobile', 'title' => 'Aplikasi Mobile', 'desc' => 'Android / cross-platform untuk TA & bisnis.', 'href' => route('services.mobile')],
+          ['icon' => 'fa-graduation-cap', 'title' => 'Skripsi & Tugas', 'desc' => 'Bimbingan TA, sistem skripsi, laporan.', 'href' => route('services.skripsi')],
+          ['icon' => 'fa-plug', 'title' => 'API & Integrasi', 'desc' => 'Payment gateway, WA API, third-party.', 'href' => route('services.api')],
       ] as $item)
-        <div class="border-gradient group">
+        <a href="{{ $item['href'] }}" class="border-gradient group block">
           <div class="border-gradient-inner p-6 transition duration-300 group-hover:bg-white/[0.03]">
             <div
               class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-xiw-cyan/20 to-xiw-violet/20 text-2xl text-xiw-cyan shadow-neon-cyan transition group-hover:scale-105"
@@ -23,7 +23,7 @@
             <h3 class="font-display text-lg font-semibold text-white">{{ $item['title'] }}</h3>
             <p class="mt-2 text-sm text-slate-400">{{ $item['desc'] }}</p>
           </div>
-        </div>
+        </a>
       @endforeach
     </div>
   </div>

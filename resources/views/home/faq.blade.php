@@ -6,6 +6,11 @@
           ['q' => 'Berapa lama pengerjaan?', 'a' => 'Tergantung scope — rata-rata 2–6 minggu untuk aplikasi skripsi.'],
           ['q' => 'Bisa revisi?', 'a' => 'Ya, sesuai paket yang disepakati di awal.'],
           ['q' => 'Bayar gimana?', 'a' => 'Biasanya DP + pelunasan; detail di WhatsApp.'],
+          ['q' => 'Mulai harga berapa?', 'a' => 'Mulai Rp250.000 (tergantung kebutuhan). Chat WhatsApp untuk estimasi cepat.'],
+          ['q' => 'Bisa custom sesuai request?', 'a' => 'Bisa. Kamu cukup kirim referensi/fitur yang diinginkan, nanti kami susun scope & timeline.'],
+          ['q' => 'Apakah ada garansi?', 'a' => 'Ada. Revisi diberikan sesuai kesepakatan paket di awal agar hasilnya sesuai target.'],
+          ['q' => 'Bisa bantu sampai sidang/presentasi?', 'a' => 'Bisa. Kami bantu penjelasan fitur, alur sistem, dan persiapan demo sesuai kebutuhan.'],
+          ['q' => 'Sourcecode yang dijual dapat apa saja?', 'a' => 'Umumnya dapat file sourcecode + panduan singkat. Detailnya tergantung item sourcecode yang kamu pilih.'],
       ] as $faq)
         <details class="group glass-panel rounded-2xl border border-white/10 p-5 open:border-xiw-cyan/30">
           <summary

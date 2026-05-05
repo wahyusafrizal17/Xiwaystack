@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://xiwaystack.com/sitemap.xml

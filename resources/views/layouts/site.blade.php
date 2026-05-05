@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="@yield('meta_description', 'Koleksi sourcecode siap pakai dan jasa pembuatan aplikasi web/mobile. Konsultasi gratis.')">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:site_name" content="Xiwaystack">
+    <meta property="og:title" content="@yield('og_title', trim($__env->yieldContent('title', 'Sourcecode') . ' — Xiwaystack'))">
+    <meta property="og:description" content="@yield('og_description', trim($__env->yieldContent('meta_description', 'Koleksi sourcecode siap pakai dan jasa pembuatan aplikasi web/mobile. Konsultasi gratis.')))">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="@yield('og_image', asset('assets/images/logo.png'))">
     <title>@yield('title', 'Sourcecode') — Xiwaystack</title>
     <link href="{{ asset('assets/images/logo.png') }}" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +25,7 @@
   </head>
   <body class="min-h-screen bg-xiw-navy font-sans text-slate-300">
     @include('partials.site-nav')
+    @include('partials.seo-jsonld')
 
     <main class="pt-20">
       @yield('content')

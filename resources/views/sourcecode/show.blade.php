@@ -2,477 +2,126 @@
 
 @section('title', $sourcecode->title)
 
-@push('styles')
-<style>
-  .sourcecode-detail-section {
-    --heading-color: #f1f5f9;
-    --default-color: #94a3b8;
-    --accent-color: #00d1ff;
-    --surface-color: rgba(255, 255, 255, 0.06);
-    --contrast-color: #0b0f1a;
-    padding-top: 120px;
-    padding-bottom: 80px;
-  }
-  .sourcecode-detail-section .breadcrumb {
-    background: transparent;
-    padding: 0;
-    margin-bottom: 2rem;
-    font-size: 0.875rem;
-  }
-  .sourcecode-detail-section .breadcrumb-item a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .sourcecode-detail-section .breadcrumb-item a:hover { color: var(--accent-color); }
-  .sourcecode-detail-section .breadcrumb-item.active { color: var(--heading-color); font-weight: 500; }
-  .sourcecode-detail-section .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.35); }
-
-  .sourcecode-detail-section .detail-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 1.25rem;
-  }
-  .sourcecode-detail-section .detail-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--heading-color);
-    line-height: 1.3;
-    margin-bottom: 0;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .sourcecode-detail-section .detail-price {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--accent-color);
-    background: rgba(227, 161, 39, 0.08);
-    border: 1px solid rgba(227, 161, 39, 0.35);
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    flex-shrink: 0;
-  }
-
-  .sourcecode-detail-section .media-wrap {
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.25);
-    margin-bottom: 1.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .sourcecode-detail-section .media-wrap img {
-    /* max-height: 420px; */
-    width: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  .sourcecode-detail-section .content-body {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--default-color);
-  }
-  .sourcecode-detail-section .content-body p { margin-bottom: 1rem; }
-  .sourcecode-detail-section .content-body h2, .sourcecode-detail-section .content-body h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--heading-color); }
-
-  .sourcecode-detail-section .sidebar-card {
-    background: var(--surface-color);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    padding: 1.5rem;
-    position: sticky;
-    top: 100px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  }
-  .sourcecode-detail-section .sidebar-card .card-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--heading-color);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .sourcecode-detail-section .sidebar-card .card-desc {
-    font-size: 0.875rem;
-    color: var(--default-color);
-    opacity: 0.9;
-    line-height: 1.55;
-    margin-bottom: 1.25rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .sourcecode-detail-section .sidebar-card .btn-back {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.65rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--contrast-color);
-    background: var(--accent-color);
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .sourcecode-detail-section .sidebar-card .btn-back:hover {
-    color: var(--contrast-color);
-    opacity: 0.95;
-    transform: translateX(-2px);
-  }
-
-  .sourcecode-detail-section .sidebar-card .btn-buy {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    margin-top: 0.75rem;
-    padding: 0.65rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #ffffff;
-    background: #25d366; /* WhatsApp green */
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .sourcecode-detail-section .sidebar-card .btn-buy:hover {
-    color: #ffffff;
-    opacity: 0.96;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-  }
-
-  .sourcecode-detail-section .features-title { font-size: 1.1rem; font-weight: 600; color: var(--heading-color); margin-top: 1.75rem; margin-bottom: 0.75rem; }
-  .sourcecode-detail-section .feature-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; font-size: 0.9375rem; color: var(--default-color); }
-  .sourcecode-detail-section .feature-item i { color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem; flex-shrink: 0; }
-
-  .sourcecode-detail-section .detail-thumbs-wrap {
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin: 0 -0.25rem 1rem;
-    padding: 0.25rem 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.2) transparent;
-  }
-  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar { height: 6px; }
-  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar-track { background: transparent; }
-  .sourcecode-detail-section .detail-thumbs-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
-  .sourcecode-detail-section .detail-thumbs {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    width: max-content;
-  }
-  .sourcecode-detail-section .detail-thumb {
-    width: 72px;
-    height: 72px;
-    min-width: 72px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: border-color 0.2s, opacity 0.2s;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .sourcecode-detail-section .detail-thumb:hover { opacity: 0.9; }
-  .sourcecode-detail-section .detail-thumb.active { border-color: var(--accent-color); }
-  .sourcecode-detail-section .detail-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  .detail-image-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(4px);
-  }
-  .detail-image-modal.show { display: flex; }
-  .detail-image-modal .modal-inner {
-    max-width: 95vw;
-    max-height: 90vh;
-    position: relative;
-  }
-  .detail-image-modal .modal-inner img {
-    max-width: 100%;
-    max-height: 90vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    display: block;
-  }
-  .detail-image-modal .modal-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    width: 36px;
-    height: 36px;
-    border: none;
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-  .detail-image-modal .modal-close:hover { background: rgba(255,255,255,0.25); }
-  .detail-image-modal .modal-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border: none;
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, opacity 0.2s;
-    z-index: 2;
-  }
-  .detail-image-modal .modal-nav:hover { background: rgba(255,255,255,0.3); }
-  .detail-image-modal .modal-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-  .detail-image-modal .modal-prev { left: -52px; }
-  .detail-image-modal .modal-next { right: -52px; }
-  @media (max-width: 768px) {
-    .detail-image-modal .modal-prev { left: 8px; }
-    .detail-image-modal .modal-next { right: 8px; }
-  }
-
-  .sourcecode-detail-section .latest-wrap { margin-top: 1.5rem; }
-  .sourcecode-detail-section .latest-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 0.75rem;
-  }
-  .sourcecode-detail-section .latest-cards { display: flex; flex-direction: column; gap: 0.75rem; }
-  .sourcecode-detail-section .latest-item {
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    padding: 0.875rem 1rem;
-    background: var(--surface-color);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .sourcecode-detail-section .latest-item:hover {
-    border-color: rgba(227, 161, 39, 0.25);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    transform: translateX(4px);
-    color: inherit;
-  }
-  .sourcecode-detail-section .latest-item .latest-thumb {
-    width: 52px;
-    height: 52px;
-    border-radius: 10px;
-    overflow: hidden;
-    flex-shrink: 0;
-    background: rgba(0,0,0,0.2);
-  }
-  .sourcecode-detail-section .latest-item .latest-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .sourcecode-detail-section .latest-item .latest-thumb .no-thumb {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.2);
-    font-size: 1.15rem;
-  }
-  .sourcecode-detail-section .latest-item .latest-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.25rem; }
-  .sourcecode-detail-section .latest-item .latest-text {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--heading-color);
-    line-height: 1.35;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .sourcecode-detail-section .latest-item .latest-desc {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
-@endpush
-
 @section('content')
-<section class="section sourcecode-detail-section">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('sourcecode.index') }}">Sourcecode</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ $sourcecode->title }}</li>
-      </ol>
+<section class="relative py-10 sm:py-14">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav class="mb-6 text-sm text-slate-400">
+      <a href="{{ url('/') }}" class="hover:text-xiw-cyan">Home</a>
+      <span class="mx-2 text-slate-600">/</span>
+      <a href="{{ route('sourcecode.index') }}" class="hover:text-xiw-cyan">Sourcecode</a>
+      <span class="mx-2 text-slate-600">/</span>
+      <span class="text-slate-300">{{ $sourcecode->title }}</span>
     </nav>
 
-    <div class="row">
-      <div class="col-lg-8" data-aos="fade-up">
-        <div class="detail-header">
-          <h1 class="detail-title">{{ $sourcecode->title }}</h1>
+    <div class="grid gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-8">
+        <div class="flex items-start justify-between gap-4">
+          <h1 class="font-display text-2xl font-bold text-white sm:text-4xl">{{ $sourcecode->title }}</h1>
           @if(! is_null($sourcecode->price))
-            <div class="detail-price">Rp {{ number_format($sourcecode->price, 0, ',', '.') }}</div>
+            <x-ui.badge variant="gold" class="mt-1 shrink-0">Rp {{ number_format($sourcecode->price, 0, ',', '.') }}</x-ui.badge>
           @endif
         </div>
 
-        {{-- Thumbnail di atas (gambar utama) --}}
         @if($sourcecode->thumbnail_path)
-          <div class="media-wrap mb-3">
-            <img src="{{ (str_starts_with($sourcecode->thumbnail_path ?? '', 'uploads/sourcecode/') || str_starts_with($sourcecode->thumbnail_path ?? '', 'sourcecode/')) ? asset($sourcecode->thumbnail_path) : asset('storage/' . $sourcecode->thumbnail_path) }}" alt="{{ $sourcecode->title }}">
+          <div class="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+            <img
+              src="{{ (str_starts_with($sourcecode->thumbnail_path ?? '', 'uploads/sourcecode/') || str_starts_with($sourcecode->thumbnail_path ?? '', 'sourcecode/')) ? asset($sourcecode->thumbnail_path) : asset('storage/' . $sourcecode->thumbnail_path) }}"
+              alt="{{ $sourcecode->title }}"
+              class="w-full object-contain"
+            >
           </div>
         @endif
 
-        {{-- Gambar detail: satu baris, scroll horizontal jika banyak --}}
         @if($sourcecode->images->isNotEmpty())
-          <p class="small text-uppercase mb-2" style="color: rgba(255,255,255,0.5); letter-spacing: 0.05em;">Gambar detail</p>
-          <div class="detail-thumbs-wrap mb-4">
-            <div class="detail-thumbs">
+          <p class="mt-6 text-xs font-semibold uppercase tracking-widest text-slate-500">Gambar detail</p>
+          <div class="mt-3 flex gap-2 overflow-x-auto pb-2">
             @foreach($sourcecode->images as $index => $img)
               @php
                 $src = (str_starts_with($img->image_path ?? '', 'uploads/sourcecode/') || str_starts_with($img->image_path ?? '', 'sourcecode/')) ? asset($img->image_path) : asset('storage/' . $img->image_path);
               @endphp
-              <button type="button" class="detail-thumb" data-src="{{ $src }}" data-alt="{{ $img->caption ?? $sourcecode->title }}" aria-label="Lihat gambar {{ $index + 1 }}">
-                <img src="{{ $src }}" alt="">
+              <button
+                type="button"
+                class="detail-thumb flex h-[72px] w-[72px] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] transition hover:border-xiw-cyan/40"
+                data-src="{{ $src }}"
+                data-alt="{{ $img->caption ?? $sourcecode->title }}"
+                aria-label="Lihat gambar {{ $index + 1 }}"
+              >
+                <img src="{{ $src }}" alt="" class="h-full w-full object-contain">
               </button>
             @endforeach
-            </div>
           </div>
-          <div class="detail-image-modal" id="detail-image-modal" aria-hidden="true">
-            <div class="modal-inner">
-              <button type="button" class="modal-close" id="detail-modal-close" aria-label="Tutup">&times;</button>
-              <button type="button" class="modal-nav modal-prev" id="detail-modal-prev" aria-label="Gambar sebelumnya"><i class="fa fa-chevron-left"></i></button>
-              <img id="detail-modal-img" src="" alt="">
-              <button type="button" class="modal-nav modal-next" id="detail-modal-next" aria-label="Gambar berikutnya"><i class="fa fa-chevron-right"></i></button>
+
+          <div class="detail-image-modal fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 p-4 backdrop-blur">
+            <div class="relative max-h-[90vh] max-w-[95vw]">
+              <button type="button" class="modal-close absolute -top-10 right-0 flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white hover:bg-white/20" aria-label="Tutup">&times;</button>
+              <button type="button" class="modal-nav modal-prev absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25" aria-label="Gambar sebelumnya"><i class="fa fa-chevron-left"></i></button>
+              <img id="detail-modal-img" src="" alt="" class="max-h-[90vh] max-w-[95vw] rounded-2xl">
+              <button type="button" class="modal-nav modal-next absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25" aria-label="Gambar berikutnya"><i class="fa fa-chevron-right"></i></button>
             </div>
           </div>
         @endif
 
         @if($sourcecode->description)
-          <div class="content-body">
+          <div class="prose prose-invert mt-8 max-w-none prose-p:text-slate-300 prose-headings:text-white">
             {!! $sourcecode->description !!}
           </div>
         @endif
 
         @if($sourcecode->features && count($sourcecode->features) > 0)
-          <h5 class="features-title">Fitur</h5>
-          <ul class="list-unstyled">
+          <h2 class="mt-10 font-display text-xl font-semibold text-white">Fitur</h2>
+          <ul class="mt-4 space-y-2">
             @foreach($sourcecode->features as $feature)
-              <li class="feature-item">
-                <i class="fa fa-check-circle"></i>
+              <li class="flex items-start gap-2 text-slate-300">
+                <i class="fa fa-check-circle mt-0.5 text-xiw-cyan"></i>
                 <span>{{ is_array($feature) ? ($feature['label'] ?? $feature['name'] ?? json_encode($feature)) : $feature }}</span>
               </li>
             @endforeach
           </ul>
         @endif
       </div>
-      <div class="col-lg-4" data-aos="fade-left">
-        <div class="sidebar-card">
-          <h5 class="card-title">Kontak</h5>
-          <div class="card-desc">
-            <p class="mb-2">
-              <strong>Whatsapp</strong>:
-              <a href="https://wa.me/6281318960576" target="_blank" rel="noopener">
-                0813-1896-0576
-              </a>
-            </p>
-            <p class="mb-2">
-              <strong>Instagram</strong>:
-              <a href="https://instagram.com/wahyuu.sz" target="_blank" rel="noopener">
-                @wahyuu.sz
-              </a>
-            </p>
-            <p class="mb-0">
-              <strong>Tiktok</strong>:
-              <a href="https://www.tiktok.com/@waystack.com" target="_blank" rel="noopener">
-                @waystack.com
-              </a>
-            </p>
+
+      <aside class="lg:col-span-4">
+        <div class="glass-panel sticky top-24 p-6">
+          <h3 class="font-display text-sm font-semibold uppercase tracking-widest text-white">Kontak</h3>
+          <div class="mt-4 space-y-2 text-sm text-slate-400">
+            <p><span class="text-white/80">WhatsApp:</span> <a class="hover:text-xiw-cyan" href="https://wa.me/6281318960576" target="_blank" rel="noopener">0813-1896-0576</a></p>
+            <p><span class="text-white/80">Instagram:</span> <a class="hover:text-xiw-cyan" href="https://instagram.com/wahyuu.sz" target="_blank" rel="noopener">@wahyuu.sz</a></p>
+            <p><span class="text-white/80">TikTok:</span> <a class="hover:text-xiw-cyan" href="https://www.tiktok.com/@xiwaystack.id" target="_blank" rel="noopener">@xiwaystack.id</a></p>
           </div>
-          <a
+
+          <x-ui.button
+            variant="whatsapp"
             href="https://wa.me/6281318960576?text={{ urlencode('Halo, saya tertarik membeli sourcecode: ' . $sourcecode->title) }}"
-            target="_blank"
-            rel="noopener"
-            class="btn-buy"
+            external
+            class="mt-6 w-full"
           >
-            <i class="fa fa-whatsapp"></i>
-            Beli Sourcecode via WhatsApp
-          </a>
+            <i class="fa fa-whatsapp"></i> Beli Sourcecode
+          </x-ui.button>
         </div>
+
         @if(isset($latestSourcecodes) && $latestSourcecodes->isNotEmpty())
-          <div class="latest-wrap">
-            <p class="latest-title">Sourcecode terbaru</p>
-            <div class="latest-cards">
+          <div class="mt-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">Sourcecode terbaru</p>
+            <div class="mt-3 space-y-3">
               @foreach($latestSourcecodes as $item)
-                <a href="{{ route('sourcecode.show', $item) }}" class="latest-item">
-                  <div class="latest-thumb">
+                <a href="{{ route('sourcecode.show', $item) }}" class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition hover:border-xiw-cyan/30">
+                  <div class="h-12 w-12 overflow-hidden rounded-xl bg-white/[0.04]">
                     @if($item->thumbnail_path)
-                      <img src="{{ (str_starts_with($item->thumbnail_path ?? '', 'uploads/sourcecode/') || str_starts_with($item->thumbnail_path ?? '', 'sourcecode/')) ? asset($item->thumbnail_path) : asset('storage/' . $item->thumbnail_path) }}" alt="{{ $item->title }}">
+                      <img src="{{ (str_starts_with($item->thumbnail_path ?? '', 'uploads/sourcecode/') || str_starts_with($item->thumbnail_path ?? '', 'sourcecode/')) ? asset($item->thumbnail_path) : asset('storage/' . $item->thumbnail_path) }}" alt="{{ $item->title }}" class="h-full w-full object-cover">
                     @else
-                      <span class="no-thumb"><i class="fa fa-code"></i></span>
+                      <div class="flex h-full w-full items-center justify-center text-white/20"><i class="fa fa-code"></i></div>
                     @endif
                   </div>
-                  <div class="latest-body">
-                    <span class="latest-text">{{ $item->title }}</span>
-                    <span class="latest-desc">{{ Str::limit(strip_tags($item->description ?? ''), 70) }}</span>
+                  <div class="min-w-0">
+                    <p class="truncate font-medium text-white">{{ $item->title }}</p>
+                    <p class="truncate text-xs text-slate-500">{{ Str::limit(strip_tags($item->description ?? ''), 70) }}</p>
                   </div>
                 </a>
               @endforeach
             </div>
           </div>
         @endif
-      </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -482,11 +131,11 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var thumbs = document.querySelectorAll('.detail-thumb');
-  var modal = document.getElementById('detail-image-modal');
+  var modal = document.querySelector('.detail-image-modal');
   var modalImg = document.getElementById('detail-modal-img');
-  var modalClose = document.getElementById('detail-modal-close');
-  var modalPrev = document.getElementById('detail-modal-prev');
-  var modalNext = document.getElementById('detail-modal-next');
+  var modalClose = document.querySelector('.detail-image-modal .modal-close');
+  var modalPrev = document.querySelector('.detail-image-modal .modal-prev');
+  var modalNext = document.querySelector('.detail-image-modal .modal-next');
 
   var slides = [];
   thumbs.forEach(function(t) {
@@ -507,14 +156,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!modal || !modalImg || index < 0 || index >= slides.length) return;
     currentIndex = index;
     updateModalImage();
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('flex');
+    modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
   function closeModal() {
     if (!modal) return;
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
     document.body.style.overflow = '';
   }
   function goPrev() {
@@ -538,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
   }
   document.addEventListener('keydown', function(e) {
-    if (!modal || !modal.classList.contains('show')) return;
+    if (!modal || modal.classList.contains('hidden')) return;
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowLeft') goPrev();
     if (e.key === 'ArrowRight') goNext();
